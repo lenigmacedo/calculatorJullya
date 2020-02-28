@@ -7,37 +7,42 @@ class CardMateria extends StatefulWidget {
 
   String materia;
   int porcentagem;
+  Function onTap;
 
-  CardMateria({@required this.materia, @required this.porcentagem}) : super();
+  CardMateria({@required this.materia, @required this.porcentagem, this.onTap})
+      : super();
 }
 
 class _CardMateriaState extends State<CardMateria> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
-      child: Container(
-        height: 80,
-        child: Card(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Text(
-                  widget.materia,
-                  style: GoogleFonts.lato(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
+        child: Container(
+          height: 80,
+          child: Card(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    widget.materia,
+                    style: GoogleFonts.lato(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: Text(
-                  '${widget.porcentagem}%',
-                  style: GoogleFonts.lato(fontSize: 20),
-                ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Text(
+                    '${widget.porcentagem}%',
+                    style: GoogleFonts.lato(fontSize: 20),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

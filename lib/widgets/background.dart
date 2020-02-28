@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 class Background extends StatelessWidget {
+  Widget head;
+  Background({this.head}) : super();
+
   @override
   Widget build(BuildContext context) {
     return ClipPath(
@@ -85,7 +88,7 @@ class Background extends StatelessWidget {
                 ),
               ),
             ),
-            Profile()
+            (head == null ? Container() : head)
           ],
         ),
       ),
