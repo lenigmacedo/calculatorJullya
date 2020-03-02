@@ -1,12 +1,13 @@
+import 'package:calculator_jullya/detail_screen.dart';
 import 'package:calculator_jullya/services/database.dart';
 import 'package:calculator_jullya/widgets/background.dart';
 import 'package:calculator_jullya/widgets/cards_materia.dart';
 import 'package:calculator_jullya/widgets/profile.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'models/materia.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,19 +28,21 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<AnimatedCircularChartState> _chartKey =
       new GlobalKey<AnimatedCircularChartState>();
 
-  @override
-  void initState() {
-    super.initState();
-    getPercentLiteratura();
-    getPercentBio();
-    getPercentFisica();
-    getPercentMat();
-  }
+  List materiasModel = <Materia>[];
+  String semana;
+  bool teste;
 
-  int percentLit = 0;
-  int percentBio = 0;
-  int percentFisica = 0;
-  int percentMat = 0;
+  List materias = [
+    'Gramática',
+    'Texto',
+    'Literatura',
+    'Matemática',
+    'História',
+    'Geografia',
+    'Biologia',
+    'Física',
+    'Química'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,10 @@ class _HomePageState extends State<HomePage> {
               transitionOnUserGestures: true,
               tag: 'backgroundTag',
               child: Background(
-                head: Profile(),
+                head: Profile(
+                  getSemana: getSemana,
+                  refresh: refresh,
+                ),
               ),
             ),
             TabBar(
@@ -73,37 +79,40 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: TabBarView(
                 children: <Widget>[
-                  Center(
-                    child: AnimatedCircularChart(
-                      duration: Duration(milliseconds: 1000),
-                      chartType: CircularChartType.Pie,
-                      size: Size(350.0, 350.0),
-                      initialChartData: data,
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Image.asset('lib/assets/deus.png'),
                   ),
+
+                  // Center(
+                  //   child: AnimatedCircularChart(
+                  //     duration: Duration(milliseconds: 1000),
+                  //     chartType: CircularChartType.Pie,
+                  //     size: Size(350.0, 350.0),
+                  //     initialChartData: data,
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
-                    child: ListView(
-                      children: <Widget>[
-                        CardMateria(
-                          materia: 'Matemática',
-                          porcentagem: percentMat,
-                          onTap: () {},
-                        ),
-                        CardMateria(
-                          materia: 'Literatura',
-                          porcentagem: percentLit,
-                        ),
-                        CardMateria(
-                          materia: 'Biologia',
-                          porcentagem: percentBio,
-                        ),
-                        CardMateria(
-                          materia: 'Física',
-                          porcentagem: percentFisica,
-                        ),
-                        
-                      ],
+                    child: RefreshIndicator(
+                      color: Colors.white,
+                      onRefresh: refresh,
+                      child: ListView(
+                          children: materiasModel.map((f) {
+                        return CardMateria(
+                          onTap: () =>
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => DetailScreen(
+                                        erros: f.erros,
+                                        total: f.total,
+                                        materia: f.materia,
+                                        acertos: f.acertos,
+                                        semana: semana,
+                                      ))),
+                          materia: f.materia,
+                          porcentagem: f.acertos * 100 ~/ f.total,
+                        );
+                      }).toList()),
                     ),
                   )
                 ],
@@ -115,66 +124,28 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  getPercentLiteratura() {
-    LocalDatabase.db.select('semana1').then((response) {
-      int total = response[0]['total'];
-      int acerto = response[0]['acerto'];
-      var erros = response[0]['erros'];
-
-      var aux = acerto * 100 / total;
-
-      print(aux);
-
-      setState(() {
-        percentLit = aux.toInt();
-      });
-    });
+  getSemana(value) {
+    semana = value;
   }
 
-  getPercentMat() {
-    LocalDatabase.db.select('semana1').then((response) {
-      int total = response[1]['total'];
-      int acerto = response[1]['acerto'];
-      var erros = response[1]['erros'];
-
-      var aux = acerto * 100 / total;
-
-      print(aux);
-
-      setState(() {
-        percentMat = aux.toInt();
-      });
-    });
+  Future<Null> refresh() async {
+    getPercent();
+    return null;
   }
 
-  getPercentBio() {
-    LocalDatabase.db.select('semana1').then((response) {
-      int total = response[2]['total'];
-      int acerto = response[2]['acerto'];
-      var erros = response[2]['erros'];
+  getPercent() {
+    var auxSemana = semana.replaceAll(' ', '').toLowerCase();
+    materias.forEach((f) {
+      materiasModel = [];
+      setState(() {});
+      LocalDatabase.db.select(auxSemana, f).then((response) {
+        List data = response;
 
-      var aux = acerto * 100 / total;
-
-      print(aux);
-
-      setState(() {
-        percentBio = aux.toInt();
-      });
-    });
-  }
-
-  getPercentFisica() {
-    LocalDatabase.db.select('semana1').then((response) {
-      int total = response[3]['total'];
-      int acerto = response[3]['acerto'];
-      var erros = response[3]['erros'];
-
-      var aux = acerto * 100 / total;
-
-      print(aux);
-
-      setState(() {
-        percentFisica = aux.toInt();
+        data.forEach((f) {
+          materiasModel.add(
+              (Materia(f['materia'], f['total'], f['erros'], f['acerto'])));
+          setState(() {});
+        });
       });
     });
   }

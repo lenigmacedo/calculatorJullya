@@ -240,11 +240,15 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                                     confirmEdit();
                                   } else {
                                     DropdownBanner.showBanner(
+                                      duration: Duration(seconds: 2),
                                       color: Colors.transparent,
                                       text: 'Adicionado ao banco de dados',
                                       textStyle: GoogleFonts.lato(
                                           fontSize: 20, color: Colors.white),
                                     );
+                                    Future.delayed(Duration(milliseconds: 2500))
+                                        .whenComplete(
+                                            () => Navigator.of(context).pop());
                                   }
                                 });
                               } else {
@@ -318,6 +322,7 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                                     total)
                                 .then((response) {
                               if (response.toString().isNotEmpty) {
+                                Navigator.of(context).pop();
                                 Navigator.of(context).pop();
                               }
                             });

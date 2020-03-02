@@ -73,9 +73,9 @@ class LocalDatabase {
     return data;
   }
 
-  select(String semana) async {
+  select(String semana, String materia) async {
     final db = await database;
-    var data = await db.rawQuery('SELECT * from $semana');
+    var data = await db.query(semana,where: 'materia = ?',whereArgs: [materia]);
 
     return data.toList();
   }
