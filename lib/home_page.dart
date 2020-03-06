@@ -44,6 +44,9 @@ class _HomePageState extends State<HomePage> {
     'Química'
   ];
 
+  Color fundo = Color(0xFF131A40);
+  Color otoFundo = Color(0xFF355B8C);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               indicatorSize: TabBarIndicatorSize.label,
               labelStyle:
                   GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w500),
-              indicatorColor: Colors.purple,
+              indicatorColor: fundo,
               tabs: [
                 Text("Porcentagem geral"),
                 Text("Porcentagem Matéria"),

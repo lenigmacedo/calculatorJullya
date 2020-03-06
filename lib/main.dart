@@ -8,6 +8,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
+  Color fundo = Color(0xFF131A40);
+  Color otoFundo = Color(0xFF355B8C);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -19,9 +23,10 @@ class MyApp extends StatelessWidget {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
     return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
       title: 'Jullyinha notas',
-      theme: ThemeData(canvasColor: Colors.purple),
+      theme: ThemeData(canvasColor: fundo),
       home: DefaultTabController(
         length: 2,
         child: HomePage(),

@@ -15,6 +15,8 @@ class _ProfileState extends State<Profile> {
   List semanas = ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'];
 
   String semanaSelecionada;
+  Color fundo = Color(0xFF131A40);
+  Color otoFundo = Color(0xFF355B8C);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,7 @@ class _ProfileState extends State<Profile> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  color: Colors.purple[300],
+                  color: otoFundo,
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => AtualizarMedias()));
