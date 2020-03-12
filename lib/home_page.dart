@@ -44,8 +44,8 @@ class _HomePageState extends State<HomePage> {
     'Química'
   ];
 
-  Color fundo = Color(0xFF131A40);
-  Color otoFundo = Color(0xFF355B8C);
+  Color primaryCollor = Color(0xFF131A40);
+  Color secondaryCollor = Color(0xFF355B8C);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               indicatorSize: TabBarIndicatorSize.label,
               labelStyle:
                   GoogleFonts.lato(fontSize: 16, fontWeight: FontWeight.w500),
-              indicatorColor: fundo,
+              indicatorColor: primaryCollor,
               tabs: [
                 Text("Porcentagem geral"),
                 Text("Porcentagem Matéria"),
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
-                    child: Image.asset('lib/assets/deus.png'),
+                    child: Image.asset('lib/assets/error.png'),
                   ),
 
                   // Center(

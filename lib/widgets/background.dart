@@ -10,17 +10,17 @@ class Background extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    //GOSTEI ALINE TBM = Color(0xFF131A40); FUNDO / Color(0xFF355B8C) OTOFUNDO
+    
 
-    Color fundo = Color(0xFF131A40);
-    Color otoFundo = Color(0xFF355B8C);
+    Color primaryCollor = Color(0xFF131A40);
+    Color secondaryCollor = Color(0xFF355B8C);
 
     return ClipPath(
       clipper: WaveClipperOne(),
       child: Container(
         height: MediaQuery.of(context).size.height / 2.5,
         width: MediaQuery.of(context).size.width,
-        color: fundo,
+        color: primaryCollor,
         child: Stack(
           children: <Widget>[
             Positioned(
@@ -30,7 +30,7 @@ class Background extends StatelessWidget {
                 width: 400,
                 height: 400,
                 decoration: BoxDecoration(
-                  color: otoFundo,
+                  color: secondaryCollor,
                   borderRadius: BorderRadius.circular(300),
                 ),
               ),
@@ -40,7 +40,7 @@ class Background extends StatelessWidget {
               top: -40,
               child: Container(
                 decoration: BoxDecoration(
-                  color: fundo,
+                  color: primaryCollor,
                   borderRadius: BorderRadius.circular(150),
                 ),
                 width: 300,
@@ -54,7 +54,7 @@ class Background extends StatelessWidget {
                 width: 250,
                 height: 250,
                 decoration: BoxDecoration(
-                  color: otoFundo,
+                  color: secondaryCollor,
                   borderRadius: BorderRadius.circular(250),
                 ),
               ),
@@ -66,7 +66,7 @@ class Background extends StatelessWidget {
                 width: 160,
                 height: 160,
                 decoration: BoxDecoration(
-                  color: fundo,
+                  color: primaryCollor,
                   borderRadius: BorderRadius.circular(200),
                 ),
               ),
@@ -78,7 +78,7 @@ class Background extends StatelessWidget {
                 width: 180,
                 height: 180,
                 decoration: BoxDecoration(
-                  color: otoFundo,
+                  color: secondaryCollor,
                   borderRadius: BorderRadius.circular(180),
                 ),
               ),
@@ -90,7 +90,7 @@ class Background extends StatelessWidget {
                 width: 130,
                 height: 130,
                 decoration: BoxDecoration(
-                  color: fundo,
+                  color: primaryCollor,
                   borderRadius: BorderRadius.circular(190),
                 ),
               ),

@@ -9,8 +9,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
 
-  Color fundo = Color(0xFF131A40);
-  Color otoFundo = Color(0xFF355B8C);
+  Color primaryCollor = Color(0xFF131A40);
+  Color secondaryCollor = Color(0xFF355B8C);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       
       debugShowCheckedModeBanner: false,
       title: 'Jullyinha notas',
-      theme: ThemeData(canvasColor: fundo),
+      theme: ThemeData(canvasColor: primaryCollor),
       home: DefaultTabController(
         length: 2,
         child: HomePage(),

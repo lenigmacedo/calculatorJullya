@@ -15,8 +15,8 @@ class _ProfileState extends State<Profile> {
   List semanas = ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'];
 
   String semanaSelecionada;
-  Color fundo = Color(0xFF131A40);
-  Color otoFundo = Color(0xFF355B8C);
+  Color primaryCollor = Color(0xFF131A40);
+  Color secondaryCollor = Color(0xFF355B8C);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class _ProfileState extends State<Profile> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 15),
                     child: Text(
-                      "Você é muito linda sabia",
+                      "Veja seu desempnho",
                       style:
                           GoogleFonts.lato(color: Colors.white, fontSize: 16),
                     ),
@@ -60,7 +60,7 @@ class _ProfileState extends State<Profile> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  color: otoFundo,
+                  color: secondaryCollor,
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => AtualizarMedias()));

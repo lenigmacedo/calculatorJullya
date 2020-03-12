@@ -23,8 +23,8 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
   final _formKey = GlobalKey<FormState>();
   final navigatorKey = GlobalKey<NavigatorState>();
 
-  Color fundo = Color(0xFF131A40);
-  Color otoFundo = Color(0xFF355B8C);
+  Color primaryCollor = Color(0xFF131A40);
+  Color secondaryCollor = Color(0xFF355B8C);
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +71,10 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                               decoration: InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide:
-                                      BorderSide(color: otoFundo),
+                                      BorderSide(color: secondaryCollor),
                                 ),
                                 focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: fundo),
+                                  borderSide: BorderSide(color: primaryCollor),
                                 ),
                                 labelText: 'Quantidade de acertos',
                                 labelStyle: GoogleFonts.lato(
@@ -115,11 +115,11 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                                     color: Colors.black45),
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide:
-                                      BorderSide(color: otoFundo),
+                                      BorderSide(color: secondaryCollor),
                                 ),
                                 focusedBorder: UnderlineInputBorder(
                                   borderSide:
-                                      BorderSide(color: otoFundo),
+                                      BorderSide(color: secondaryCollor),
                                 ),
                               ),
                             ),
@@ -133,7 +133,7 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                                   width: 80,
                                   height: 80,
                                   decoration: BoxDecoration(
-                                    color: fundo,
+                                    color: primaryCollor,
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(20),
                                     ),
@@ -160,7 +160,7 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                                   width: 80,
                                   height: 80,
                                   decoration: BoxDecoration(
-                                    color: otoFundo,
+                                    color: secondaryCollor,
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(20),
                                     ),
@@ -197,7 +197,7 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          color: fundo,
+                          color: primaryCollor,
                           child: Text(
                             "Salvar",
                             style: GoogleFonts.lato(
@@ -210,7 +210,7 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                               DropdownBanner.showBanner(
                                 duration: Duration(seconds: 2),
                                 text: 'Escolha uma matéria para salvar',
-                                color: otoFundo,
+                                color: secondaryCollor,
                                 textStyle: GoogleFonts.lato(
                                     fontSize: 22,
                                     color: Colors.white,
@@ -220,7 +220,7 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                               DropdownBanner.showBanner(
                                 duration: Duration(seconds: 2),
                                 text: 'Escolha uma semana para salvar',
-                                color: otoFundo,
+                                color: secondaryCollor,
                                 textStyle: GoogleFonts.lato(
                                     fontSize: 22,
                                     color: Colors.white,
@@ -315,7 +315,7 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                             style: GoogleFonts.lato(
                                 fontSize: 20, color: Colors.white),
                           ),
-                          color: fundo,
+                          color: primaryCollor,
                           onPressed: () {
                             LocalDatabase.db
                                 .update(
@@ -343,13 +343,13 @@ class _AtualizarMediasState extends State<AtualizarMedias> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          borderSide: BorderSide(color: fundo),
+                          borderSide: BorderSide(color: primaryCollor),
                           child: Text(
                             "Não",
                             style: GoogleFonts.lato(
-                                fontSize: 20, color: fundo),
+                                fontSize: 20, color: primaryCollor),
                           ),
-                          //color: fundo,
+                          //color: primaryCollor,
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
